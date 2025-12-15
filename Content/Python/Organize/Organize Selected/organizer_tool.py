@@ -30,8 +30,20 @@ def organize_selected_assets():
             target_folder_name = "Textures"
         elif isinstance(asset, (unreal.Material, unreal.MaterialInstance)):
             target_folder_name = "Materials"
-        elif isinstance(asset, unreal.StaticMesh):
+        elif isinstance(asset, (unreal.StaticMesh, unreal.SkeletalMesh)):
             target_folder_name = "Meshes"
+        elif isinstance(asset, unreal.Blueprint):
+            target_folder_name = "Blueprints"
+        elif isinstance(asset, unreal.LevelSequence):
+            target_folder_name = "Sequences"
+        elif isinstance(asset, (unreal.SoundCue, unreal.SoundWave)):
+            target_folder_name = "Audio"
+        elif isinstance(asset, (unreal.ParticleSystem, unreal.NiagaraSystem)):
+            target_folder_name = "Particles"
+        elif isinstance(asset, unreal.World):
+            target_folder_name = "Maps"
+        elif isinstance(asset, unreal.WidgetBlueprint):
+            target_folder_name = "UI"
         
         # If it's not one of the types we care about, skip it
         if not target_folder_name:

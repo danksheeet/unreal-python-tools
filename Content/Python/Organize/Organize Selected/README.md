@@ -1,6 +1,18 @@
 # Organizer Tool for Unreal Engine
 
-This tool allows you to automatically organize selected assets in the Content Browser into `Textures`, `Materials`, and `Meshes` folders.
+This tool allows you to automatically organize selected assets in the Content Browser into categorized folders.
+
+## Supported Asset Types
+
+- **Textures** -> `Textures`
+- **Materials & Instances** -> `Materials`
+- **Static & Skeletal Meshes** -> `Meshes`
+- **Blueprints** -> `Blueprints`
+- **Level Sequences** -> `Sequences`
+- **Sound Waves & Cues** -> `Audio`
+- **Particle Systems & Niagara** -> `Particles`
+- **Levels (Maps)** -> `Maps`
+- **Widget Blueprints** -> `UI`
 
 ## Installation
 
@@ -35,7 +47,19 @@ You can modify `organizer_tool.py` to add more categories or change folder names
 
 # Инструмент Организатор (Organizer Tool) для Unreal Engine
 
-Этот инструмент позволяет автоматически сортировать выбранные ассеты в Content Browser по папкам `Textures`, `Materials` и `Meshes`.
+Этот инструмент позволяет автоматически сортировать выбранные ассеты в Content Browser по соответствующим папкам.
+
+## Поддерживаемые типы ассетов
+
+- **Текстуры (Textures)** -> `Textures`
+- **Материалы и Инстансы (Materials & Instances)** -> `Materials`
+- **Статические и Скелетные меши (Static & Skeletal Meshes)** -> `Meshes`
+- **Блюпринты (Blueprints)** -> `Blueprints`
+- **Секвенции (Level Sequences)** -> `Sequences`
+- **Звуки (Sound Waves & Cues)** -> `Audio`
+- **Частицы (Particles & Niagara)** -> `Particles`
+- **Уровни (Levels/Maps)** -> `Maps`
+- **Виджеты (Widget Blueprints)** -> `UI`
 
 ## Установка
 
