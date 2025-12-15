@@ -41,3 +41,49 @@ This Python script enforces naming conventions on selected assets in the Unreal 
 ## Requirements
 
 - Unreal Engine 5 with Python Scripting Plugin enabled.
+
+---
+
+# Инструмент автоматического именования (Auto Namer) для Unreal Engine 5
+
+Этот скрипт на Python обеспечивает соблюдение соглашений об именовании для выбранных ассетов в Content Browser (Браузере контента) Unreal Engine.
+
+## Функции
+
+- **Авто-переименование**: Автоматически добавляет префиксы к ассетам на основе их класса (например, `Texture2D` -> `T_`).
+- **Обнаружение коллизий**: Предотвращает переименование, если ассет с целевым именем уже существует.
+- **Идемпотентность**: Пропускает ассеты, которые уже имеют правильный префикс.
+- **Логирование**: Предоставляет понятную обратную связь в Output Log (Журнале вывода).
+
+## Поддерживаемые префиксы
+
+| Класс (Class) | Префикс |
+| :--- | :--- |
+| Texture2D | `T_` |
+| Material | `M_` |
+| MaterialInstanceConstant | `MI_` |
+| StaticMesh | `SM_` |
+| SkeletalMesh | `SK_` |
+| Blueprint | `BP_` |
+| ParticleSystem | `P_` |
+| SoundWave | `S_` |
+| Level | `L_` |
+
+## Установка и Использование
+
+1.  **Откройте Unreal Engine 5**.
+2.  **Откройте Output Log**: Перейдите в `Window` (Окно) -> `Output Log` (Журнал вывода).
+3.  **Выберите ассеты**: Выделите ассеты, которые вы хотите переименовать, в Content Browser.
+4.  **Запустите скрипт**:
+    - Переключите режим ввода в Output Log с `Cmd` на `Python`.
+    - Скопируйте и вставьте содержимое `AutoNamer.py` в строку ввода и нажмите Enter.
+    - ИЛИ, если файл находится в вашем пути python (python path), вы можете импортировать и запустить его:
+      ```python
+      import AutoNamer
+      AutoNamer.rename_assets()
+      ```
+      *(Примечание: Вам может потребоваться перезагрузить модуль, если вы внесли изменения: `import importlib; importlib.reload(AutoNamer)`)*
+
+## Требования
+
+- Unreal Engine 5 с включенным плагином Python Scripting Plugin.

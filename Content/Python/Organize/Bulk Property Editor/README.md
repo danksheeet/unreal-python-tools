@@ -1,3 +1,46 @@
+# Bulk Property Editor Tool Guide
+
+This tool allows for mass editing of properties of selected assets in Unreal Engine.
+
+## How it works
+
+The script performs the following steps:
+
+1.  **Get Selection**: The script looks at which assets you have selected in the Content Browser (`unreal.EditorUtilityLibrary.get_selected_assets()`).
+2.  **Filtering**: It checks each selected asset. If an asset does not match the specified class (e.g., is not a Texture), it is skipped.
+3.  **Modification**: For suitable assets, the script attempts to change the specified property (`set_editor_property`).
+4.  **Saving**: After a successful change, the asset is automatically saved (`unreal.EditorAssetLibrary.save_loaded_asset()`).
+5.  **Logging**: Information about each modified file and a final summary are printed to the Output Log.
+
+## Configuration
+
+In the beginning of the `bulk_property_editor.py` file, there is a **USER CONFIGURATION** section. You must edit these variables before running:
+
+```python
+# 1. Target Class: Asset Type (e.g., unreal.Texture2D, unreal.StaticMesh, unreal.MaterialInstance)
+TARGET_CLASS = unreal.Texture2D
+
+# 2. Property Name: Exact property name (hover over the property in the editor to see its internal name)
+PROPERTY_NAME = "sRGB"
+
+# 3. Property Value: New value. Data type must match (bool, float, int, or Enum)
+PROPERTY_VALUE = False
+```
+
+## Safety
+
+-   **Try/Except**: Property modification is wrapped in a `try-except` block. If one asset causes an error (e.g., the property is read-only), the script will not crash, but will simply log the error and proceed to the next file.
+-   **ScopedSlowTask**: The script shows a progress bar that can be cancelled if the process takes too long.
+
+## How to use
+
+1.  Open the script in any text editor.
+2.  Configure the variables `TARGET_CLASS`, `PROPERTY_NAME`, and `PROPERTY_VALUE`.
+3.  In Unreal Engine, select the desired assets in the Content Browser.
+4.  Run the script via the Output Log (switch to Python) or create an Editor Utility Widget with a button that calls this code.
+
+---
+
 # Руководство по инструменту Bulk Property Editor
 
 Этот инструмент позволяет массово изменять свойства выбранных ассетов в Unreal Engine.

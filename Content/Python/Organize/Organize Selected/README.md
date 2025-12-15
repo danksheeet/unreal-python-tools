@@ -30,3 +30,38 @@ This tool allows you to automatically organize selected assets in the Content Br
 ## Customization
 
 You can modify `organizer_tool.py` to add more categories or change folder names. Look for the `organize_selected_assets` function.
+
+---
+
+# Инструмент Организатор (Organizer Tool) для Unreal Engine
+
+Этот инструмент позволяет автоматически сортировать выбранные ассеты в Content Browser по папкам `Textures`, `Materials` и `Meshes`.
+
+## Установка
+
+1.  **Включите плагин Python**: В Unreal Engine перейдите в `Edit` (Правка) -> `Plugins` (Плагины), найдите "Python Editor Script Plugin" и включите его. Перезапустите движок, если потребуется.
+2.  **Найдите папку скриптов**: Найдите папку для Python скриптов вашего проекта. Обычно это `YourProject/Content/Python`. Если она не существует, создайте её.
+    *   Альтернативно, вы можете добавить любую папку в путь Python в `Project Settings` (Настройки проекта) -> `Plugins` (Плагины) -> `Python`.
+3.  **Скопируйте скрипт**: Скопируйте `organizer_tool.py` в эту папку.
+
+## Использование
+
+### Способ 1: Меню инструментов (Tool Menu)
+1.  Перезапустите редактор или перезагрузите Python скрипт.
+2.  Инструмент должен появиться в главном меню в разделе `Tools` (Инструменты) -> `Organizer Tool`.
+3.  Выберите ассеты в Content Browser.
+4.  Нажмите `Organizer Tool` в меню.
+
+### Способ 2: Контекстное меню (Экспериментально)
+1.  Нажмите правой кнопкой мыши на выбранных ассетах в Content Browser.
+2.  Найдите `Organizer Tool` в контекстном меню (обычно в разделе `Common Asset Actions` или внизу).
+3.  Нажмите на него, чтобы организовать файлы.
+
+### Способ 3: Консоль Python
+1.  Откройте Output Log (`Window` -> `Output Log`).
+2.  Переключите режим ввода на `Python` (внизу слева окна лога).
+3.  Введите `import organizer_tool; organizer_tool.organize_selected_assets()` и нажмите Enter.
+
+## Настройка
+
+Вы можете изменить `organizer_tool.py`, чтобы добавить больше категорий или изменить имена папок. Ищите функцию `organize_selected_assets`.
