@@ -10,13 +10,16 @@ PREFIX_MAPPING = {
     unreal.Blueprint: "BP_",
     unreal.ParticleSystem: "P_",
     unreal.SoundWave: "S_",
-    unreal.Level: "L_",
+    unreal.World: "L_", 
+    unreal.TextureCube: "TC_",
+    unreal.TextureRenderTarget2D: "RT_",
 }
 
 def rename_assets():
     """
     Renames selected assets based on the PREFIX_MAPPING.
     """
+    unreal.log("AutoNamer: Script started.")
     # Get selected assets
     selected_assets = unreal.EditorUtilityLibrary.get_selected_assets()
     
@@ -24,8 +27,10 @@ def rename_assets():
 
     if not selected_assets:
         unreal.log_warning("AutoNamer: No assets selected.")
+        unreal.EditorDialog.show_message("AutoNamer", "Please select assets in the Content Browser to rename.", unreal.AppMsgType.OK)
         return
 
+    renamed_count = 0
     for asset in selected_assets:
         # Check if the asset's class is in our mapping
         prefix = None
@@ -35,7 +40,7 @@ def rename_assets():
                  break
         
         if not prefix:
-            unreal.log(f"AutoNamer: Skipping '{asset.get_name()}' - Class '{asset.get_class().get_name()}' not in mapping.")
+            unreal.log_warning(f"AutoNamer: Skipping '{asset.get_name()}' - Class '{asset.get_class().get_name()}' not in mapping.")
             continue
 
         old_name = asset.get_name()
@@ -63,7 +68,14 @@ def rename_assets():
 
         # Check for collision
         if unreal.EditorAssetLibrary.does_asset_exist(new_package_path):
-            unreal.log_warning(f"AutoNamer: Could not rename '{old_name}' to '{new_name}' because an asset with that name already exists.")
+            existing_asset_data = unreal.EditorAssetLibrary.find_asset_data(new_package_path)
+            existing_class = existing_asset_data.asset_class_path.asset_name
+            
+            msg = f"AutoNamer: Target '{new_name}' already exists. Type: {existing_class}."
+            if str(existing_class) == "ObjectRedirector":
+                msg += " (It is a hidden Redirector! Right-click folder and 'Fix Up Redirectors' to clean it.)"
+            
+            unreal.log_warning(msg)
             continue
 
         # Rename
